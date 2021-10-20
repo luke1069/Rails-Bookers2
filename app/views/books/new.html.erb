@@ -1,0 +1,14 @@
+<!--部分テンプレート化の必要あり。新規投稿ページは無しの為-->
+
+<h2>New book</h2>
+<%= form_with model:@book,local:true do |f| %>
+  <div>
+    <label for="book_title">Title</label>
+    <%= f.text_field:title %>
+  </div>
+  <div>
+    <label for="book_opinion">Opinion</label>
+    <%= f.text_field:body %>
+    <%= f.submit 'Create Book' %>
+  </div>
+<% end %>

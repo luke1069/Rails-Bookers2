@@ -1,0 +1,11 @@
+<h2>Book detail</h2>
+
+<div>
+  <%= attachment_image_tag @book.user,:profile_image,:fill,40,40,format:'jpeg',fallback:"no_image.jpg"%><br>
+  <%= @book.user.name %>
+  <p>タイトル：<%= @book.title %></p>
+  <p>オピニオン：<%= @book.body %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "destroy",book_path(@book.id),method: :delete %>
+  <% end %>
+</div>

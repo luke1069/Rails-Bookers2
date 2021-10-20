@@ -1,0 +1,20 @@
+<h2>User info</h2>
+<%= attachment_image_tag @user,:profile_image, :fill,100,100,format:'jpeg',fallback:"no_image.jpg" %>
+<p>name:<%= @user.name %></p>
+<p>introduction:<%= @user.introduction %></p>
+<% if @user.id == current_user.id %>
+  <p><%= link_to "編集", edit_user_path(@user.id) %></p>
+<% end %>
+
+
+
+<h2>Books</h2>
+<% @books.each do |book| %>
+  <div>
+    <%= attachment_image_tag book.user,:profile_image, :fill,40,40,format:'jpeg',fallback:"no_image.jpg" %>
+    <%= link_to book_path(book.id) do %>
+      <p>タイトル：<%= book.title %></p>
+    <% end %>
+    <p>オピニオン：<%= book.body %></p>
+  </div>
+<% end %>
