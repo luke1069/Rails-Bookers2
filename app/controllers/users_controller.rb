@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
 
   def index
+    @book = Book.new
+    @user = User.find_by(id:current_user.id)
     @users = User.all
   end
 
   def show
+    @book = Book.new
     @user = User.find(params[:id])
     @books = @user.books
   end
@@ -15,7 +18,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
+    if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+    end
     redirect_to user_path(@user)
   end
 

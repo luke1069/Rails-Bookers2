@@ -1,10 +1,24 @@
-<h2>User info</h2>
-<%= form_with model:@user,local:true do |f| %>
-  <label for ="user_name">Name</label>
-  <p><%= f.text_field:name,autofocus:true,placeholder:@user.name %></p>
-  <label for ="user_image">Image</label>
-  <p><%= f.attachment_field:profile_image %></p>
-  <label for ="user_introduction">Introduction</label>
-  <p><%= f.text_area:introduction %></p>
-  <p><%= f.submit 'Update User' %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <%= form_with model:@user,local:true do |f| %>
+        <div class="form-group">
+          <label for ="user_name">Name</label>
+          <p><%= f.text_field:name,autofocus:true,placeholder:@user.name,class:"form-control" %></p>
+        </div>
+        <div class="form-group">
+          <label for ="user_image">Image</label>
+          <p><%= f.attachment_field:profile_image,class:"form-control-file" %></p>
+        </div>
+        <div class="form-group">
+          <label for ="user_introduction">Introduction</label>
+          <p><%= f.text_area:introduction,class:"form-control" %></p>
+        </div>
+        <div>
+          <p><%= f.submit 'Update User',class:"btn btn-secondary" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
