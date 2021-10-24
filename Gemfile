@@ -68,3 +68,10 @@ gem "refile-mini_magick"
 
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+
+group :test do
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+end

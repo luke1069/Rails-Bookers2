@@ -3,20 +3,7 @@
 
     <div class="col-md-3">
 
-      <h2>User info</h2>
-      <%= attachment_image_tag @user,:profile_image,:fill,100,100,format:'jpeg',fallback:"no_image.jpg" %>
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>name</th>
-            <th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= @user.introduction %></th>
-          </tr>
-        </tbody>
-      </table>
+      <%= render 'users/info',user:@user %>
 
       <div class="row">
         <% if @user.id == current_user.id %>
