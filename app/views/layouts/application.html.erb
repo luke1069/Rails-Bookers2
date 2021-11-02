@@ -52,6 +52,14 @@
     </header>
 
     <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 mx-auto my-1">
+            <%= render 'searchs/form' %>
+          </div>
+        </div>
+      </div>
+
       <% if flash[:notice] %>
         <p id="notice"><%= flash[:notice] %></p>
       <% end %>
