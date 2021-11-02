@@ -5,12 +5,12 @@ class SearchsController < ApplicationController
     @method = params["method"]
     @content = params["content"]
 
-    @records = search_for(@model,@method,@content)
+    @records = search_for(@model,@content,@method)
   end
 
   private
 
-  def search_for
+  def search_for(model,content,method)
     if model == 'user'
       if method == 'perfect'
         User.where(name: content)
