@@ -31,7 +31,6 @@
     </div>
 
     <div class="col-md-8 offset-md-1">
-
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
@@ -74,28 +73,10 @@
         </tbody>
       </table>
 
-      <% @book_show.post_comments.each do |post_comment| %>
-        <%= attachment_image_tag post_comment.user, :profile_image, :fill,50,50, format:"jpeg",fallback:"no-image-icon-40*40.jpeg" %><br>
-        <%= link_to user_path(post_comment.user_id) do %>
-          <%= post_comment.user.name %>
-        <% end %>
-        <%= post_comment.comment %>
-        <% if post_comment.user == current_user %>
-          <%= link_to "Destroy",book_post_comment_path(@book_show,post_comment),method: :delete,class:"btn btn-sm btn-danger" %>
-        <% end %>
-        <br>
-      <% end %>
-
-      <%= form_with model:[@book_show,@post_comment],local:true do |f| %>
-        <div class="form-group">
-          <%= f.text_area:comment,class:"form-control" %>
-        </div>
-        <div>
-          <%= f.submit '送信' %>
-        </div>
-      <% end %>
+      <div class="comment_area">
+        <%= render 'post_comments/comments',{ book_show: @book_show, post_comment: @post_comment } %>
+      </div>
 
     </div>
-
   </div>
 </div>
