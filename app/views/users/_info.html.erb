@@ -21,14 +21,38 @@
   </tbody>
 </table>
 
-<% if user != current_user %>
-  <% if user.is_followed_by?(current_user) %>
-    <%= link_to user_relationships_path(user),method: :delete do %>
-      <button class="btn btn-info mb-4 ">フォロー外す</button>
-    <% end %>
-  <% else %>
-    <%= link_to user_relationships_path(user),method: :post do %>
-      <button class="btn btn-success mb-4 ">フォローする</button>
-    <% end %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <% if user != current_user %>
+        <% if user.is_followed_by?(current_user) %>
+          <%= link_to user_relationships_path(user),method: :delete do %>
+            <button class="btn btn-info mb-4 ">フォロー外す</button>
+          <% end %>
+        <% else %>
+          <%= link_to user_relationships_path(user),method: :post do %>
+            <button class="btn btn-success mb-4 ">フォローする</button>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-md-5">
+      <% unless @user.id == current_user.id %>
+        <% if (current_user.is_followed_by? @user) && (@user.is_followed_by? current_user) %>
+          <% if @havaRoom == true %>
+            <%= link_to "chatへ", room_path(@roomId) %>
+          <% else %>
+            <%= form_with model:@room, local: true do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "chat開始" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

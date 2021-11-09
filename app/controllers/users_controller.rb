@@ -12,19 +12,19 @@ class UsersController < ApplicationController
     @books = @user.books
 
     # try chat機能
-    @currentuserentry = Entry.where(user_id: current_user.id)
-    @userentry = Entry.where(user_id: @user.id)
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
-      @currentuserentry.each do |cu|
-        @userentry.each do |u|
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
           if cu.room_id == u.room_id
-            @havaroom = true
-            @roomid = cu.room_id
+            @havaRoom = true
+            @roomId = cu.room_id
           end
         end
       end
     end
-    unless @haveroom
+    unless @haveRoom
       @room = Room.new
       @entry = Entry.new
     end
