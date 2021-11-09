@@ -1,3 +1,12 @@
+<% if @message.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= @message.errors.count %>error prohibited this obj from being saved:</h2>
+  <% @message.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </div>
+<% end %>
+
 <div>
   <%= link_to "back", user_path(current_user.id) %>
 </div>
@@ -24,7 +33,7 @@
     <% if @messages.present? %>
       <% @messages.each do |m| %>
         <div class="chat-face">
-          <%= attachment_image_tag e.user, :profile_image, :fill, 50, 50, format: "jpeg", fallback: "no-image-icon-40*40.jpeg" %>
+          <%= attachment_image_tag m.user, :profile_image, :fill, 50, 50, format: "jpeg", fallback: "no-image-icon-40*40.jpeg" %>
         </div>
         <div class="chat-message">
           <strong><%= m.message %></strong><br>
