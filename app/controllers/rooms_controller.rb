@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
     else
       redirect_back fallback_location: user_path(user_id)
     end
+    # byebug
   end
 
   private
