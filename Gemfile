@@ -79,3 +79,5 @@ end
 gem 'ransack'
 
 gem 'jquery-rails'
+
+gem 'impressionist'

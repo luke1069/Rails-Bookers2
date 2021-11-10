@@ -1,9 +1,5 @@
 class BooksController < ApplicationController
 
-  # def new
-    # @book = Book.new
-  # end
-
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -15,7 +11,6 @@ class BooksController < ApplicationController
       @user = current_user
       render :index
     end
-
   end
 
   def index
@@ -33,6 +28,9 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
     @user = User.find_by(id:@book.user_id)
     @post_comment = PostComment.new
   end
